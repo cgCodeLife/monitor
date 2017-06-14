@@ -174,32 +174,6 @@ class webpage(object):
             lib.common_method.add_process_record(Const.RUN_RECORD_OK, time_consume, str(exc), item_info)
         
         lib.scheduler_logger.info(os.path.basename(__file__), sys._getframe().f_lineno, "finish webpage_check_func. task_id:" + str(u_data_item_id) + ". time:" + str(datetime.now()))
-       
-
-        proto, rest = urllib.splittype(url)
-        hostname, uri = urllib.splithost(rest)
-        
-        if hostname == 'music.baidu.com':
-            process_res, time_consume, exc = self.gz_check_webpage(url, check_param)   
-            if process_res == 1:
-                lib.common_method.add_process_record(Const.RUN_RECORD_ERROR, time_consume, str(exc), item_info)
-                if data_callback_url:
-                    lib.scheduler_logger.warning(os.path.basename(__file__), sys._getframe().f_lineno, "gz webpage check fail, call url: " + str(data_callback_url))
-                    self.__scheduler_http.setTimeout(5)
-                    self.__scheduler_http.request(data_callback_url)
-            elif process_res == 0:
-                lib.common_method.add_process_record(Const.RUN_RECORD_OK, time_consume, str(exc), item_info)
-            lib.scheduler_logger.info(os.path.basename(__file__), sys._getframe().f_lineno, "finish gz_webpage_check_func. task_id:" + str(u_data_item_id) + ". time:" + str(datetime.now()))
-    
-    #广州机房
-    def gz_check_webpage(self, url, check_param):
-        url = url.replace('music.baidu.com','182.61.35.21')
-        header = self.__scheduler_http.getHeader()
-        header['host'] = 'music.baidu.com'
-        self.__scheduler_http.setHeaders(header)
-        process_res, time_consume, exc = self.check_webpage(url, check_param)
-        exc = 'gz' + "\n" + exc 
-        return process_res, time_consume, exc
 
     def check_webpage(self, url, check_param):
         criterion = check_param['data_criterion']
