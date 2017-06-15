@@ -11,7 +11,7 @@
 使用python开发，基于apscheduler完成任务的定时执行与是否满足配置条件的扫描
 
 ## 环境部署：
-web与api的部分需布在同一个nginx的server下，具体nginx配置如下：
+web与api的部分需布在同一个nginx的server下，具体nginx配置如下：<br>
 server {
     listen              xxxx;
     server_name         xxxx.xxxxxx.xxx;
