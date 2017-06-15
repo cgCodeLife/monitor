@@ -11,37 +11,7 @@
 使用python开发，基于apscheduler完成任务的定时执行与是否满足配置条件的扫描
 
 ## 环境部署：
-web与api的部分需布在同一个nginx的server下，具体nginx配置如下：<br>
-server {<br>
-    listen              xxxx;<br>
-    server_name         xxxx.xxxxxx.xxx;<br>
-    more_set_headers    'Server: Apache';<br>
-    set $php_upstream 'xxxxxxxxxxx';<br>
-
-    location ~ ^/(favicon.ico|statici|dist) {<br>
-        root            /home/work/odp/webroot;<br>
-    }<br>
-
-    location ~ \.php$ {<br>
-        root            /home/work/odp/webroot;<br>
-        fastcgi_pass    $php_upstream;<br>
-        fastcgi_index   index.php;<br>
-        include         fastcgi.conf;<br>
-    }<br>
-
-    location / {<br>
-        root /home/work/odp/webroot;<br>
-        index index.php;<br>
-        fastcgi_pass    $php_upstream;<br>
-        include         fastcgi.conf;<br>
-        rewrite ^/([^/.]*)(/[^\?]*)?((\?.*)?)$ /$1/index.php$2$3 break;<br>
-    }<br>
-
-    location ~ (.*)\.(html|htm)?$ {<br>
-         rewrite (.*\.html)$ /index.php;<br>
-    }<br>
-}<br>
-
+由于有跨域问题存在，web与api的部分需布在同一个nginx的server下。
 scheduler为独立部署，独立开出一个端口供api进行访问，scheduler所使用的python需安装MysqlDB和ApScheduler的扩展，scheduler的配置文件如下：<br>
 [network]<br>
 #服务监听端口<br>
