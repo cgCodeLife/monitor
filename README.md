@@ -11,7 +11,7 @@
 使用python开发，基于apscheduler完成任务的定时执行与是否满足配置条件的扫描
 
 ## 环境部署：
-由于有跨域问题存在，web与api的部分需布在同一个nginx的server下。
+由于有跨域问题存在，web与api的部分需布在同一个nginx的server下。<br>
 scheduler为独立部署，独立开出一个端口供api进行访问，scheduler所使用的python需安装MysqlDB和ApScheduler的扩展，scheduler的配置文件如下：<br>
 [network]<br>
 #服务监听端口<br>
