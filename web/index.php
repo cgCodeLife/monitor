@@ -1,6 +1,6 @@
 <?php
 include_once('phpcas/libraries/CAS.php');
-phpCAS::client(CAS_VERSION_2_0, 'cas.taihenw.com', 80, 'cas');
+phpCAS::client(CAS_VERSION_2_0, 'xxxxxxxxxxxxxx', 80, 'cas');
 phpCAS::setNoCasServerValidation();
 phpCAS::handleLogoutRequests();
 if (phpCAS::checkAuthentication())
@@ -15,7 +15,7 @@ setcookie("personalid", $username);
 
 
 $ch = curl_init();
-$url = "http://monitor.taihenw.com/monitor/loginuser?username=" . $username;
+$url = "http://xxxxxxxxxxxx/monitor/loginuser?username=" . $username;
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_HEADER, 0);
